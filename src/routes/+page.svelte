@@ -15,7 +15,6 @@
     let cancellationCount = 0;
     
     let cancellationArray = [];
-    $: cancellationArray;
 
     function calculate() {
         reservationCount = 0;
