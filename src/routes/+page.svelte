@@ -120,9 +120,29 @@
 <Heading tag='h4'>Overall Attendance Rate: { attendanceRate }%</Heading>
 <Progressbar progress={attendanceRate} size="h-6" />
 
+<Hr />
+
+<Heading tag='h2'>All Cancellations</Heading>
+<Table>
+    <TableHead>
+        <TableHeadCell>Date</TableHeadCell>
+        <TableHeadCell>Cancellation Reason</TableHeadCell>'
+        <TableHeadCell>Instructor Name</TableHeadCell>
+    </TableHead>
+    <TableBody>
+        {#each cancellationArray as cancellationObject}
+            <TableBodyRow>
+                <TableBodyCell>{cancellationObject.date}</TableBodyCell>
+                <TableBodyCell>{cancellationObject.title}</TableBodyCell>
+                <TableBodyCell>{cancellationObject.instructor}</TableBodyCell>
+            </TableBodyRow>
+        {/each}
+    </TableBody>
+</Table>
 
 <Hr />
 <Heading tag='h2'>Cancellation Table</Heading>
+
 <Table>
     <TableHead>
         <TableHeadCell>Cancellation Reason</TableHeadCell>
@@ -332,25 +352,8 @@
         
     </TableBody>
 </Table>
-<Hr />
 
-<Heading tag='h2'>All Cancellations</Heading>
-<Table>
-    <TableHead>
-        <TableHeadCell>Date</TableHeadCell>
-        <TableHeadCell>Cancellation Reason</TableHeadCell>'
-        <TableHeadCell>Instructor Name</TableHeadCell>
-    </TableHead>
-    <TableBody>
-        {#each cancellationArray as cancellationObject}
-            <TableBodyRow>
-                <TableBodyCell>{cancellationObject.date}</TableBodyCell>
-                <TableBodyCell>{cancellationObject.title}</TableBodyCell>
-                <TableBodyCell>{cancellationObject.instructor}</TableBodyCell>
-            </TableBodyRow>
-        {/each}
-    </TableBody>
-</Table>
+
 
 </div>
 
