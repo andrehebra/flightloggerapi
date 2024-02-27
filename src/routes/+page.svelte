@@ -15,26 +15,27 @@
     let cancellationCount = 0;
     
     let cancellationArray = [];
+    //console.log(data);
+
+    let dataArray = [...data.dataArray];
+    console.log(dataArray);
 
     function calculate() {
         reservationCount = 0;
         cancellationCount = 0;
 
-        let dataArray = [...data.data.data.bookings.nodes];
-
-        console.log(dataArray);
-
         for (let i = 0; i < dataArray.length; i++) {
-            console.log(JSON.stringify(dataArray[i]))
-            if (JSON.stringify(dataArray[i]) == '{}') {
+            //console.log(dataArray[i]);
+            if (JSON.stringify(dataArray[i]) != '{}') {
+                if (firstName == dataArray[i].student.firstName && lastName == dataArray[i].student.lastName) {
+                    reservationCount++;
 
-            } else if (dataArray[i].student.firstName == firstName && dataArray[i].student.lastName == lastName){
-                reservationCount++;
-                if (dataArray[i].cancellation != null) {
-                    cancellationCount++;
-                    cancellationArray.push(dataArray[i].cancellation.title);
+                    if (dataArray[i].cancellation != null) {
+                        cancellationCount++;
+                    }
                 }
             }
+            
         }
     }
     

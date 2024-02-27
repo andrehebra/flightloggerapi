@@ -5,28 +5,31 @@ import { print } from 'graphql';
 
 import { error } from '@sveltejs/kit';
 
-const query = `query Query($all: Boolean) {
-	bookings(all: $all) {
-		nodes {
-			... on SingleStudentBooking {
-				student {
-					firstName
-					lastName
-				}
-				instructor {
-					firstName
-					lastName
-				}
-				startsAt
-				endsAt
-				cancellation {
-					title
-					comment
-					id
-				}
-			}
-		}
-	}
+const query = `query Query($all: Boolean, $after: String) {
+	bookings(all: $all, after: $after) {
+		pageInfo {
+            endCursor
+            hasNextPage
+        }nodes {
+            ... on SingleStudentBooking {
+                startsAt
+                endsAt
+                student {
+                    firstName
+                    lastName
+                }
+                instructor {
+                    firstName
+                    lastName
+                }
+                cancellation {
+                    title
+                    comment
+                    id
+                }
+            }
+        }
+    }
 }`;
 
 export const load = async () => {
@@ -49,10 +52,41 @@ export const load = async () => {
         });
 
         let data = await response.json();
+        let dataArray = [...data.data.bookings.nodes];
+        //console.log(dataArray);
 
-        console.log(data);
+        while (data.data.bookings.pageInfo.hasNextPage == true) {
+            const variables = {
+                all: true,
+                after: data.data.bookings.pageInfo.endCursor,
+            }
 
-        return { data };
+            const response = await fetch('https://api.flightlogger.net/graphql', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    query,
+                    variables
+                })
+            });
+
+            console.log(data.data.bookings.pageInfo.hasNextPage);
+
+            data = await response.json();
+            try {
+                for (let i = 0; i < data.data.bookings.nodes.length; i++) {
+                dataArray.push(data.data.bookings.nodes[i]);
+                }
+            } catch (e) {
+                console.error("concatination error: " + e);
+            }
+
+        }
+
+        return { dataArray };
     } catch (error) {
         console.error(`Error in load function :( ${error}`);
     }
