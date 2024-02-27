@@ -32,11 +32,18 @@
 
                     if (dataArray[i].cancellation != null) {
                         cancellationCount++;
+                        cancellationArray.push({
+                            title: dataArray[i].cancellation.title,
+                            date: dataArray[i].startsAt,
+                            instructor: dataArray[i].instructor.firstName + " " + dataArray[i].instructor.lastName
+                        });
                     }
                 }
             }
             
         }
+
+        cancellationArray = cancellationArray;
     }
     
 </script>
