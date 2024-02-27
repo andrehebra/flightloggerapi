@@ -5,8 +5,11 @@
 
     data.latest && rates.set(data.latest);
 
-    let firstName = "Jacob";
-    let lastName = "Flake";
+    let firstName = "First Name";
+    let lastName = "Last Name";
+
+    $: firstName;
+    $: lastName;
 
     let reservationCount = 0;
     let cancellationCount = 0;
@@ -19,14 +22,6 @@
         cancellationCount = 0;
 
         let dataArray = [...data.data.data.bookings.nodes];
-
-        //console.log(data.data.data.bookings.nodes);
-
-        //dataArray.push(data.data.data.bookings.nodes);
-
-        //for (let i = 0; i < data.data.data.bookings.nodes.length; i++) {
-        //    dataArray.push(data.data.data.bookings.notes[i]);
-        //}
 
         console.log(dataArray);
 
@@ -47,13 +42,13 @@
 </script>
 
 
-<h1>Homepage: This page is mainly used for testing purposes</h1>
-<p><a href="">Cancellation Dashboard</a></p>
-<button on:click={ calculate }>Log Data</button>
-
+<h1>Cancellation Dashboard Testing</h1>
 <h1>Student name</h1>
-<input type="text">
+<input type="text" bind:value={firstName}>
+<input type="text" bind:value={lastName}>
 
+
+<button on:click={ calculate }>Log Data</button>
 <p>Total Reservations: { reservationCount }</p>
 <p>Total Cancellations: { cancellationCount }</p>
 
