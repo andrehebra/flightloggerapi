@@ -127,7 +127,7 @@
 <Table>
     <TableHead>
         <TableHeadCell>Date</TableHeadCell>
-        <TableHeadCell>Cancellation Reason</TableHeadCell>'
+        <TableHeadCell>Cancellation Reason</TableHeadCell>
         <TableHeadCell>Instructor Name</TableHeadCell>
     </TableHead>
     <TableBody>
