@@ -1,12 +1,17 @@
 <script>
+    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
+    import { Label, Input, Button } from 'flowbite-svelte';
+
+
+
+
     import rates from '$lib/shared/stores/rates';
-    
     export let data;
 
     data.latest && rates.set(data.latest);
 
-    let firstName = "First Name";
-    let lastName = "Last Name";
+    let firstName = "";
+    let lastName = "";
 
     $: firstName;
     $: lastName;
@@ -50,16 +55,41 @@
 
 
 <h1>Cancellation Dashboard Testing</h1>
-<h1>Student name</h1>
-<input type="text" bind:value={firstName}>
-<input type="text" bind:value={lastName}>
+
+<div class="mb-6">
+    <Label for="first-name" class="block mb-2">First Name</Label>
+    <Input bind:value={firstName} id="default-input" placeholder="" />
+</div>
+<div class="mb-6">
+    <Label for="first-name" class="block mb-2">Last Name</Label>
+    <Input bind:value={lastName} id="default-input" placeholder="" />
+</div>
+<Button on:click={ calculate }>Submit</Button>
 
 
-<button on:click={ calculate }>Log Data</button>
+
 <p>Total Reservations: { reservationCount }</p>
 <p>Total Cancellations: { cancellationCount }</p>
 
-{#each cancellationArray as cancellationTitle}
-    <p>Cancellation Reason: { cancellationTitle }</p>
-{/each}
+
+
+
+<Table>
+    <TableHead>
+        <TableHeadCell>Date</TableHeadCell>
+        <TableHeadCell>Cancellation Reason</TableHeadCell>'
+        <TableHeadCell>Instructor Name</TableHeadCell>
+    </TableHead>
+    <TableBody>
+        {#each cancellationArray as cancellationObject}
+            <TableBodyRow>
+                <TableBodyCell>{cancellationObject.date}</TableBodyCell>
+                <TableBodyCell>{cancellationObject.title}</TableBodyCell>
+                <TableBodyCell>{cancellationObject.instructor}</TableBodyCell>
+            </TableBodyRow>
+        {/each}
+    </TableBody>
+</Table>
+
+
 
