@@ -60,7 +60,9 @@
     };
 
     let dataArray = [...data.dataArray];
-    console.log(dataArray);
+
+    const currentDate = new Date();
+    const currentISODate = currentDate.toISOString().slice(0, -5);
 
     function calculate() {
         reservationCount = 0;
@@ -69,9 +71,10 @@
         cancellationArray = [];
 
         for (let i = 0; i < dataArray.length; i++) {
-            //console.log(dataArray[i]);
             if (JSON.stringify(dataArray[i]) != '{}') {
-                if (firstName == dataArray[i].student.firstName && lastName == dataArray[i].student.lastName) {
+                if (firstName == dataArray[i].student.firstName && lastName == dataArray[i].student.lastName && dataArray[i].startsAt < currentISODate) {
+                    console.log(dataArray[i].startsAt);
+
                     reservationCount++;
 
                     if (dataArray[i].cancellation != null) {
@@ -91,8 +94,6 @@
         attendanceRate = parseInt((1 - (cancellationCount / reservationCount)) * 100)
 
         cancellationArray = cancellationArray;
-
-        console.log(cancellationReasons);
     }
     
 </script>
