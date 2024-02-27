@@ -1,2 +1,2 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Homepage: This page is mainly used for testing purposes</h1>
+<p><a href="https://kit.svelte.dev">Cancellation Dashboard</a></p>
