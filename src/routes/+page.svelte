@@ -100,7 +100,7 @@
 
 <div class="container">
 
-<Heading tag='h1'>Cancellation Dashboard Testing</Heading>
+<Heading tag='h1'>Cancellation Dashboard</Heading>
 
 <Hr />
 
