@@ -100,6 +100,10 @@
     
 </script>
 
+<head>
+    <title>Cancellation Dashboard</title>
+</head>
+
 <div class="container">
 
 <Heading tag='h1'>Cancellation Dashboard</Heading>
