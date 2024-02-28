@@ -4,6 +4,7 @@
     import { Heading , Hr} from 'flowbite-svelte';
     import { Progressbar } from 'flowbite-svelte';
     import { sineOut } from 'svelte/easing';
+    import { DarkMode } from 'flowbite-svelte';
 
 
 
