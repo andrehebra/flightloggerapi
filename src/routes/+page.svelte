@@ -3,6 +3,7 @@
     import { Label, Input, Button } from 'flowbite-svelte';
     import { Heading , Hr} from 'flowbite-svelte';
     import { Progressbar } from 'flowbite-svelte';
+    import { sineOut } from 'svelte/easing';
 
 
 
@@ -118,8 +119,28 @@
 
 <Heading tag='h4'>Total Reservations: { reservationCount }</Heading>
 <Heading tag='h4'>Total Cancellations: { cancellationCount }</Heading>
-<Heading tag='h4'>Overall Attendance Rate: { attendanceRate }%</Heading>
-<Progressbar progress={attendanceRate} size="h-6" />
+
+<Hr />
+
+<Progressbar animate
+    precision={1}
+    labelOutside="Attendance Rate (Overall)"
+    labelInside
+    tweenDuration={1500}
+    easing={sineOut}
+    size="h-6"
+    labelInsideClass="bg-blue-600 text-blue-100 text-base font-medium text-center p-1 leading-none rounded-full"
+    class="mb-8"progress={attendanceRate} />
+
+<Progressbar animate
+    precision={1}
+    labelOutside="Controllable Attendance Rate (Excluding Non-Controllable)"
+    labelInside
+    tweenDuration={1500}
+    easing={sineOut}
+    size="h-6"
+    labelInsideClass="bg-blue-600 text-blue-100 text-base font-medium text-center p-1 leading-none rounded-full"
+    class="mb-8"progress={attendanceRate} />
 
 <Hr />
 
